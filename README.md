@@ -1,4 +1,4 @@
-![logo](logo.svg)
+![logo](ptick.ico)
 
 # Phix - a language grammar for [highlight.js](https://highlightjs.org/)
 
