@@ -1,0 +1,84 @@
+<span class="hljs-comment">#!/bin/bash</span>
+<span class="hljs-comment">#[
+  echo Phix ignores all text between #[ and #] in exactly the same way as /* and */ 
+  echo (both &quot;and&quot; are nested comments), allowing arbitrary shell code, for example:
+  cd /user/project/working
+  exec /path/to/phix &quot;$0&quot; &quot;$@&quot;
+  exit # may be needed for the shell to ignore the rest of this file.
+# comments(/shebang) ignored by Phix end here -&gt; #]</span>
+<span class="hljs-comment">-- aside: few files have [multiline] shebangs like above, but this *is* a test file.</span>
+<span class="hljs-comment">/*   
+    Standard
+    /*
+    **  Nested
+    **  /*
+    **      Block
+    *//*    /*
+    **          Comments, of which Phix has quite a few [ok, six] varieties...
+    **      */
+    *****/
+    **/
+*/</span>
+<span class="hljs-comment">--/*
+    Euphoria-compatibility-style nestable multiline comments/code
+span class="hljs-comment">--*/</span>
+<span class="hljs-comment">// This program should be runnable (C-style line comments, btw, too!)</span>
+with javascript_semantics
+<span class="hljs-built_in">string</span> pe, te := iff(platform()==JS?<span class="hljs-string">&quot;JavaScript/browser&quot;</span>:<span class="hljs-string">&quot;Phix/desktop&quot;</span>)
+<span class="hljs-keyword">ifdef</span> PHIX <span class="hljs-keyword">then</span> 
+    pe = <span class="hljs-string">&quot;Phix&quot;</span> 
+<span class="hljs-keyword">elsedef</span> 
+    pe = <span class="hljs-string">&quot;Euphoria&quot;</span> <span class="hljs-comment">-- not that this file is compatible with that..</span>
+<span class="hljs-keyword">end</span> <span class="hljs-keyword">ifdef</span> 
+<span class="hljs-built_in">printf</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;This is %s (%s)\n&quot;</span>,{pe,te}); <span class="hljs-comment">-- the ; is entirely optional</span>
+<span class="hljs-built_in">assert</span>(<span class="hljs-string">&quot;\n\r\b\t\\\&quot;\&#x27;\0\e&quot;</span>=<span class="hljs-built_in">join</span>({<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-number">10</span>,<span class="hljs-number">13</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">#5C</span>,<span class="hljs-number">#22</span>,<span class="hljs-number">#27</span>,<span class="hljs-number">#00</span>,<span class="hljs-number">#1B</span>},<span class="hljs-string">&quot;&quot;</span>))
+<span class="hljs-built_in">assert</span>(<span class="hljs-string">&quot;\#42\x43\u4445\U00105678&quot;</span>=<span class="hljs-string">&quot;B&quot;</span>&amp;<span class="hljs-string">&#x27;C&#x27;</span>&amp;<span class="hljs-string">&quot;\xE4\x91\x85\xF4\x85\x99\xB8&quot;</span>)
+
+<span class="hljs-comment">-- triplequote, triplequote indented, backtick, and doublequote strings:</span>
+<span class="hljs-keyword">constant</span> tqs = <span class="hljs-string">&quot;&quot;&quot;
+this
+string\thing&quot;&quot;&quot;</span>,
+
+tqis = <span class="hljs-string">&quot;&quot;&quot;
+_____this
+     string\thing&quot;&quot;&quot;</span>,
+
+bts = <span class="hljs-string">`this
+string\thing`</span>,
+
+dqs = <span class="hljs-string">&quot;this\nstring\\thing&quot;</span>
+<span class="hljs-built_in">assert</span>(tqs==tqis <span class="hljs-keyword">and</span> tqis==bts <span class="hljs-keyword">and</span> bts==dqs <span class="hljs-keyword">and</span> dqs==tqs)
+<span class="hljs-built_in">assert</span>(x<span class="hljs-string">&quot;1 2 34 5678_AbC&quot;</span>=={<span class="hljs-number">0x01</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0xAB</span>, <span class="hljs-number">0x0C</span>})
+
+<span class="hljs-comment">-- Beyond comments and strings, not much in Phix bothers a syntax colourer.</span>
+<span class="hljs-comment">-- Originally I had another 380+ lines in here, that didn&#x27;t prove anything.</span>
+
+<span class="hljs-keyword">function</span> merge_sort(<span class="hljs-built_in">sequence</span> x)
+    <span class="hljs-comment">-- put x into ascending order using a recursive merge sort</span>
+     <span class="hljs-keyword">if</span> <span class="hljs-built_in">length</span>(x)&lt;=<span class="hljs-number">1</span> <span class="hljs-keyword">then</span>
+         <span class="hljs-keyword">return</span> x  <span class="hljs-comment">-- trivial case</span>
+     <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>
+     <span class="hljs-built_in">integer</span> midpoint = <span class="hljs-built_in">floor</span>(<span class="hljs-built_in">length</span>(x)/<span class="hljs-number">2</span>)
+     <span class="hljs-built_in">sequence</span> merged = {},
+          first_half = merge_sort(x[<span class="hljs-number">1</span>..midpoint]),
+         second_half = merge_sort(x[midpoint+<span class="hljs-number">1</span>..$])
+     <span class="hljs-comment">-- merge the two sorted halves into one</span>
+     <span class="hljs-keyword">while</span> <span class="hljs-built_in">length</span>(first_half)&gt;<span class="hljs-number">0</span> 
+       <span class="hljs-keyword">and</span> <span class="hljs-built_in">length</span>(second_half)&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">do</span>
+         <span class="hljs-keyword">if</span> first_half[<span class="hljs-number">1</span>]&lt;=second_half[<span class="hljs-number">1</span>] <span class="hljs-keyword">then</span>
+             merged = <span class="hljs-built_in">append</span>(merged, first_half[<span class="hljs-number">1</span>])
+             first_half = first_half[<span class="hljs-number">2</span>..$]
+         <span class="hljs-keyword">else</span>
+             merged = <span class="hljs-built_in">append</span>(merged, second_half[<span class="hljs-number">1</span>])
+             second_half = second_half[<span class="hljs-number">2</span>..$]
+         <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>
+     <span class="hljs-keyword">end</span> <span class="hljs-keyword">while</span>
+     <span class="hljs-comment">-- result is the merged data plus any leftovers</span>
+     <span class="hljs-keyword">return</span> merged &amp; first_half &amp; second_half
+<span class="hljs-keyword">end</span> <span class="hljs-keyword">function</span>
+
+?merge_sort({9, 10, 3, 1, 4, 5, 8, 7, 6, 2})
+?{<span class="hljs-number">1</span>,<span class="hljs-number">0(2)10</span>,<span class="hljs-number">0b11</span>,<span class="hljs-number">0d4</span>,<span class="hljs-number">0t5</span>,<span class="hljs-number">0(6)10</span>,<span class="hljs-number">0(7)10</span>,<span class="hljs-number">0o10</span>,<span class="hljs-number">0x9</span>,<span class="hljs-number">#A</span>} <span class="hljs-comment">-- [the same 1..10 but with extra weirdness]</span>
+
+<span class="hljs-built_in">wait_key</span>()
+

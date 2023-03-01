@@ -1,12 +1,12 @@
 ![logo](logo.svg)
 
-# Cypher - a language grammar for [highlight.js](https://highlightjs.org/)
+# Phix - a language grammar for [highlight.js](https://highlightjs.org/)
 
 ![version](https://badgen.net/npm/v/highlightjs-cypher) ![license](https://badgen.net/badge/license/CC0%201.0/blue)
 ![install size](https://badgen.net/packagephobia/install/highlightjs-cypher) ![minified size](https://badgen.net/bundlephobia/min/highlightjs-cypher)
 [![Build Status](https://travis-ci.com/highlightjs/highlightjs-cypher.svg?branch=master)](https://travis-ci.com/highlightjs/highlightjs-cypher)
 
-Cypher is a declarative graph query language created by [Neo4j](https://neo4j.com/) for the graph database management system.
+Phix is a hybrid interpreted/compiled general purpose programming language.
 
 ## Usage
 
@@ -19,17 +19,17 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 ```html
 <script type="text/javascript" src="/path/to/highlight.min.js"></script>
 <script type="text/javascript" charset="UTF-8"
-  src="/path/to/highlightjs-cypher/dist/cypher.min.js"></script>
+  src="/path/to/highlightjs-phix/dist/phix.min.js"></script>
 <script type="text/javascript">
   hljs.highlightAll();
 </script>
 ```
 
-### Using directly from the UNPKG CDN
+### Using directly from the UNPKG CDN (???)
 
 ```html
 <script type="text/javascript"
-  src="https://unpkg.com/highlightjs-cypher/dist/cypher.min.js"></script>
+  src="https://unpkg.com/highlightjs-phix/dist/phix.min.js"></script>
 ```
 
 - More info: <https://unpkg.com>
@@ -40,22 +40,22 @@ If you're using Node / Webpack / Rollup / Browserify, etc, simply require the la
 
 ```javascript
 var hljs = require('highlightjs');
-var hljsCypher = require('highlightjs-cypher');
+var hljsPhix = require('highlightjs-phix');
 
-hljs.registerLanguage("cypher", hljsCypher);
+hljs.registerLanguage("phix", hljsPhix);
 hljs.highlightAll();
 ```
 
-### React
+### React (???)
 
-You need to import both Highlight.js and third-party language like Cypher:
+You need to import both Highlight.js and third-party language like Phix:
 
 ```js
 import React, {Component} from 'react'
 import 'highlight.js/scss/darcula.scss' # your favourite theme
-import cypher from './cypher'
+import phix from './phix'
 import hljs from 'highlight.js'
-hljs.registerLanguage('cypher', cypher);
+hljs.registerLanguage('phix', phix);
 
 class Highlighter extends Component
 {
@@ -71,7 +71,7 @@ class Highlighter extends Component
     return
     {
       <pre ref={(node) => this.node = node}>
-        <code className="cypher">
+        <code className="phix">
           {children}
         </code>
       </pre>
@@ -89,16 +89,16 @@ for details.
 
 ### Author
 
-Johannes Wienke <languitar@semipol.de>
+Pete Lomax <petelomax@ymail.com>
 
 ### Maintainer
 
-Gustavo Reis <gusbemacbe@gmail.com>
+Pete Lomax <petelomax@ymail.com>
 
 ## Links
 
 - The official site for the Highlight.js library is <https://highlightjs.org/>.
 - The Highlight.js GitHub project: <https://github.com/highlightjs/highlight.js>
-- Learn more about Cypher: <https://neo4j.com/docs/cypher-manual/current/#cypher-intro>
+- Learn more about Cypher: <http://phix.x10.mx>
 
-[1]: https://github.com/highlightjs/highlightjs-cypher/blob/master/LICENSE
+[1]: https://github.com/highlightjs/highlightjs-phix/blob/master/LICENSE
