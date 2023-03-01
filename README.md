@@ -2,9 +2,11 @@
 
 # Phix - a language grammar for [highlight.js](https://highlightjs.org/)
 
+<!--
 ![version](https://badgen.net/npm/v/highlightjs-cypher) ![license](https://badgen.net/badge/license/CC0%201.0/blue)
 ![install size](https://badgen.net/packagephobia/install/highlightjs-cypher) ![minified size](https://badgen.net/bundlephobia/min/highlightjs-cypher)
 [![Build Status](https://travis-ci.com/highlightjs/highlightjs-cypher.svg?branch=master)](https://travis-ci.com/highlightjs/highlightjs-cypher)
+-->
 
 Phix is a hybrid interpreted/compiled general purpose programming language.
 
@@ -25,6 +27,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 </script>
 ```
 
+<!--
 ### Using directly from the UNPKG CDN (???)
 
 ```html
@@ -81,6 +84,7 @@ class Highlighter extends Component
 
 export default Highlighter;
 ```
+-->
 
 ## License
 
