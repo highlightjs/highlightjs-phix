@@ -23,6 +23,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 <script type="text/javascript" charset="UTF-8"
   src="/path/to/highlightjs-phix/dist/phix.min.js"></script>
 <script type="text/javascript">
+  hljs.registerLanguage("phix",hljsDefinePhix);
   hljs.highlightAll();
 </script>
 ```
@@ -103,6 +104,6 @@ Pete Lomax <petelomax@ymail.com>
 
 - The official site for the Highlight.js library is <https://highlightjs.org/>.
 - The Highlight.js GitHub project: <https://github.com/highlightjs/highlight.js>
-- Learn more about Cypher: <http://phix.x10.mx>
+- Learn more about Phix: <http://phix.x10.mx>
 
 [1]: https://github.com/highlightjs/highlightjs-phix/blob/master/LICENSE
