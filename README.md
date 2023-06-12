@@ -38,6 +38,7 @@ Simply load the module after loading Highlight.js. You'll use the minified versi
 
 - More info: <https://unpkg.com>
 
+-->
 ### With Node or another build system
 
 If you're using Node / Webpack / Rollup / Browserify, etc, simply require the language module, then register it with Highlight.js.
@@ -49,7 +50,7 @@ var hljsPhix = require('highlightjs-phix');
 hljs.registerLanguage("phix", hljsPhix);
 hljs.highlightAll();
 ```
-
+<!--
 ### React (???)
 
 You need to import both Highlight.js and third-party language like Phix:
